@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
+use App\Models\Tag;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -24,5 +25,6 @@ class DatabaseSeeder extends Seeder
         $this->call(UserTableSeeder::class);
 
         Category::factory(10)->create();
+        Tag::factory(20)->create();
     }
 }
