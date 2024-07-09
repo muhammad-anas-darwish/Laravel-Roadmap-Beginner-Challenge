@@ -36,6 +36,7 @@
                 </div>
             </div>
 
+            @auth
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">
@@ -69,6 +70,7 @@
                     </x-slot>
                 </x-dropdown>
             </div>
+            @endauth
 
             <!-- Hamburger -->
             <div class="-me-2 flex items-center sm:hidden">
@@ -83,13 +85,28 @@
     </div>
 
     <!-- Responsive Navigation Menu -->
+    @auth
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
         </div>
-
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.index')">
+                {{ __('Categories') }}
+            </x-responsive-nav-link>
+        </div>
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('tags.index')" :active="request()->routeIs('tags.index')">
+                {{ __('Tags') }}
+            </x-responsive-nav-link>
+        </div>
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('articles.index')" :active="request()->routeIs('articles.index')">
+                {{ __('Article') }}
+            </x-responsive-nav-link>
+        </div>
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
             <div class="px-4">
@@ -115,4 +132,5 @@
             </div>
         </div>
     </div>
+    @endauth
 </nav>
