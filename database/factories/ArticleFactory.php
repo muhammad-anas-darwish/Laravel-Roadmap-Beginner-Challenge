@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,10 @@ class ArticleFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'title' => $this->faker->name(),
+            'full_text' => $this->faker->text(),
+            // 'image' => $this->faker->image(public_path('storage/images'), 640, 480, null, false),
+            'category_id' => $this->faker->randomElement(Category::pluck('id')->toArray()),
         ];
     }
 }

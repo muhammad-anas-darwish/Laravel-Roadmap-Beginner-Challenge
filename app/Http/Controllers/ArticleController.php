@@ -30,6 +30,16 @@ class ArticleController extends Controller
     }
 
     /**
+     * Display a listing of the articles.
+     */
+    public function get_all()
+    {
+        $articles = Article::paginate(20);
+
+        return View::make('articles.all', compact('articles'));
+    }
+
+    /**
      * Show the form for creating a new resource.
      */
     public function create()
@@ -66,7 +76,7 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        return View::make('articles.dashboard.show', compact('article'));
+        return View::make('articles.show', compact('article'));
     }
 
     /**

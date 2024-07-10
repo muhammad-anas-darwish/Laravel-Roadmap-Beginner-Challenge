@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Article;
 use App\Models\Category;
 use App\Models\Tag;
 use App\Models\User;
@@ -26,5 +27,11 @@ class DatabaseSeeder extends Seeder
 
         Category::factory(10)->create();
         Tag::factory(20)->create();
+        Article::factory(20)->create()
+            ->each(function ($article) { 
+                $article->tags()->attach(
+                    Tag::all()->random(rand(1, 5))->pluck('id')->toArray()
+                );
+            });
     }
 }

@@ -19,12 +19,16 @@ Route::middleware('auth')->group(function () {
         ->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
     Route::resource('tags', TagController::class)
         ->except(['show']);
-    Route::resource('articles', ArticleController::class);
+    Route::resource('articles', ArticleController::class)
+        ->except(['show']);
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('/articles/all', [ArticleController::class, 'get_all'])->name('articles.get_all');
+Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('articles.show');
 
 require __DIR__ . '/auth.php';

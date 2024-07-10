@@ -42,5 +42,6 @@
                 @endforeach
             </tbody>
         </table>
+        <div class="px-4">{{ $articles->links() }}</div>
     </div>
 </section>
