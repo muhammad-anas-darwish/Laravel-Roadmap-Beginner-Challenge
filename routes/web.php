@@ -28,7 +28,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/articles/all', [ArticleController::class, 'get_all'])->name('articles.get_all');
-Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('articles.show');
+Route::prefix('/articles')->as('articles.')->controller(ArticleController::class)->group(function() {
+    Route::get('/all', 'get_all')->name('get_all');
+    Route::get('/{article}', 'show')->name('show');
+});
 
 require __DIR__ . '/auth.php';
